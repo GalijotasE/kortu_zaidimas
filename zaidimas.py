@@ -10,7 +10,7 @@ class Menu:
         self.meniu_extra = Label(pagrindinis, text="Please choose an item of a menu:")
         self.start_game = Button(pagrindinis, text="\u2660 Start Game \u2660",command=self.start, width=30, font=("Bahnschrift", 13))
         self.taisykles = tk.Button(pagrindinis, text="\u2665 Rules Of The Game \u2665",command = self.taisykles, width=30, font=("Bahnschrift", 13))
-        self.readme = Button(pagrindinis, text="\u2666 Open README Notes \u2666", width=30, font=("Bahnschrift", 13))
+        self.readme = Button(pagrindinis, text="\u2666 Open README Notes \u2666",command=self.readme, width=30, font=("Bahnschrift", 13))
         self.quit = Button(pagrindinis, text="\u2663 Quit Game \u2663", command=self.quit, width=30, font=("Bahnschrift", 13))
         self.name.pack(side=TOP)
         self.meniu_extra.pack(side=TOP)
@@ -27,6 +27,10 @@ class Menu:
     def taisykles(self):
         self.newWindow = tk.Toplevel(self.pagrindinis)
         self.app = Rules(self.newWindow)
+
+    def readme(self):
+        self.newWindow = tk.Toplevel(self.pagrindinis)
+        self.app = Readme(self.newWindow)
 
     def quit(self):
         self.quit = quit
@@ -68,6 +72,11 @@ class Rules:
 
     def close_windows(self):
         self.pagrindinis.destroy()
+
+class Readme():
+    def __init__(self, pagrindinis):
+        self.pagrindinis = pagrindinis
+
 
 def pagrindinis_langas():
     langas = tk.Tk()
