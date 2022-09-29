@@ -1,57 +1,80 @@
-### kortu zaidimas
-# 52 kortos, 1,2,3,4,5,6,7,8,9,10,J,Q,K,A su skirtingais zenklais
-# zaidimo meniu - zaidimo pavadinimas, pradeti zaidima, taisykles.
-# verciamos 2 kortos, 1 dealerio, kita zaidejo. kas turi didesne- laimi.
-
-### daugiau arba maziau kortu zaidimas
-
-#importai:
-from random import shuffle
-import random
+import tkinter as tk
 from tkinter import *
+from random import shuffle
 
-langas = Tk()
-langas.title("Kortu zaidimas v1.00") # pridedame lango pavadinima.
-langas.geometry("500x500")
-#meniu funkcija:
-zaidimo_pav = Label(langas, text="Kortu Zaidimas", width=15, font=("Bahnschrift", 20))
-meniu_pav = Label(langas, text="Prasome pasirinkti veiksma:", font="Bahnschrift", )
-start_button = Button(langas, text="Start Game", width=30, font=("Bahnschrift", 13))
-taisykles_button = Button(langas, text="Rules Of The Game", width=30, font=("Bahnschrift", 13))
-readme_button = Button(langas, text="Open README Notes", width=30, font=("Bahnschrift", 13))
-iseiti_button = Button(langas, text="Quit Game", width=30, font=("Bahnschrift", 13))
+class Menu:
+    def __init__(self, pagrindinis):
+        self.pagrindinis = pagrindinis
+        self.frame = tk.Frame(self.pagrindinis)
+        self.name = Label(pagrindinis, text="\u2660 get.ACE() \u2660", width=15, font=("Bahnschrift", 20))
+        self.meniu_extra = Label(pagrindinis, text="Please choose an item of a menu:")
+        self.start_game = Button(pagrindinis, text="\u2660 Start Game \u2660",command=self.start, width=30, font=("Bahnschrift", 13))
+        self.taisykles = tk.Button(pagrindinis, text="\u2665 Rules Of The Game \u2665",command = self.taisykles, width=30, font=("Bahnschrift", 13))
+        self.readme = Button(pagrindinis, text="\u2666 Open README Notes \u2666", width=30, font=("Bahnschrift", 13))
+        self.quit = Button(pagrindinis, text="\u2663 Quit Game \u2663", command=self.quit, width=30, font=("Bahnschrift", 13))
+        self.name.pack(side=TOP)
+        self.meniu_extra.pack(side=TOP)
+        self.start_game.pack(side=TOP)
+        self.taisykles.pack(side=TOP)
+        self.readme.pack(side=TOP)
+        self.quit.pack(side=BOTTOM)
+        self.frame.pack()
 
-#pack'inam meniu:
-zaidimo_pav.pack(side=TOP)
-meniu_pav.pack(side=TOP)
-start_button.pack(side=TOP)
-taisykles_button.pack(side=TOP)
-readme_button.pack(side=TOP)
-iseiti_button.pack(side=BOTTOM)
+    def start(self):
+        self.newWindow = tk.Toplevel(self.pagrindinis)
+        self.app = Start(self.newWindow)
 
+    def taisykles(self):
+        self.newWindow = tk.Toplevel(self.pagrindinis)
+        self.app = Rules(self.newWindow)
 
-#langas.iconphoto("img")
+    def quit(self):
+        self.quit = quit
+        self.pagrindinis.destroy()
 
+class Start:
+    def __init__(self, pagrindinis):
+        self.pagrindinis = pagrindinis
+        self.frame = tk.Frame(self.pagrindinis)
+        self.name = Label(pagrindinis, text="\u2660 get.ACE() \u2660", width=15, font=("Bahnschrift", 20))
+        self.name.pack(side=TOP)
+        self.frame.pack()
 
-langas.mainloop() # paleidziame tKinterio programa.
+class Rules:
+    def __init__(self, pagrindinis):
+        self.pagrindinis = pagrindinis
+        self.frame = tk.Frame(self.pagrindinis)
+        self.name = Label(pagrindinis, text="\u2660 get.ACE() \u2660", width=15, font=("Bahnschrift", 20))
+        self.meniu_extra = Label(pagrindinis, text="Rules of the game:",font=("Bahnschrift", 14))
+        self.meniu_extra1 = Label(pagrindinis, text="As soon as you start the game",font=("Bahnschrift", 11))
+        self.meniu_extra2 = Label(pagrindinis, text="you will be given a choice",font=("Bahnschrift", 11))
+        self.meniu_extra3 = Label(pagrindinis, text="to pick a random number between 1-52",font=("Bahnschrift", 11))
+        self.meniu_extra4 = Label(pagrindinis, text="all of these numbers contain a random card.",font=("Bahnschrift", 11))
+        self.meniu_extra5 = Label(pagrindinis, text="Your objective - To randomly select a card",font=("Bahnschrift", 11))
+        self.meniu_extra6 = Label(pagrindinis, text="that is higher than your AI opponent's",font=("Bahnschrift", 11))
+        self.meniu_extra7 = Label(pagrindinis, text="BEST OF LUCK!",font=("Bahnschrift", 11))
+        self.quitButton = tk.Button(self.frame, text = 'Quit Rules', command = self.close_windows, width=30, font=("Bahnschrift", 13))
+        self.name.pack(side=TOP)
+        self.meniu_extra.pack(side=TOP)
+        self.meniu_extra1.pack(side=TOP)
+        self.meniu_extra2.pack(side=TOP)
+        self.meniu_extra3.pack(side=TOP)
+        self.meniu_extra4.pack(side=TOP)
+        self.meniu_extra5.pack(side=TOP)
+        self.meniu_extra6.pack(side=TOP)
+        self.meniu_extra7.pack(side=TOP)
+        self.quitButton.pack()
+        self.frame.pack()
 
-#print("card game V1.00")
-#meniu
-#print("Menu")
-#print("1.Start Game") 
-#print("2.Game Rules")
-#print("3.Quit")
-#veiksmas = int(input("Please choose an action: "))
+    def close_windows(self):
+        self.pagrindinis.destroy()
 
-#if veiksmas == 1:
-    #cards = []
-    #for symbols in ["\u2660", "\u2663", "\u2665", "\u2666"]:
-        #for value in [*range(2,10), "J", "Q", "K", "A"]:
-            #cards.append(f"{value} {symbols}")
-            #shuffle(cards)
-    #print("Cards have been shuffled.")
+def pagrindinis_langas():
+    langas = tk.Tk()
+    app = Menu(langas)
+    langas.geometry("500x300")
+    langas.title("get.ACE() - card game v1.2")
+    langas.mainloop()
 
-#elif veiksmas == 2:
-    #print("Rules Of this card game..")
-#elif veiksmas == 3:
-    #print("Thank you for playing")
+if __name__ == '__main__':
+    pagrindinis_langas()
