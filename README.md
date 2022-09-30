@@ -18,3 +18,10 @@ Seperated code functions to classes.
 Reduced size of a main menu window.
 Made "Quit" button on menu functional.
 
+V1.3
+Added a menu function, where a "Open README Notes" button redirects to this game's github README.md file.
+Added an image text to the game's menu (logo).
+Added "kortos()" function and assigned card values, signs, deck to it's variables.
+Added "traukimas()" function, which shuffles and takes out a card.
+Added "aukstesniu_vertes()" function, which defines values of higher cards.
+
