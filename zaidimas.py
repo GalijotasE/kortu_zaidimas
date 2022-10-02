@@ -47,8 +47,7 @@ class Start:
     def __init__(self, pagrindinis):
         self.pagrindinis = pagrindinis
         self.frame = tk.Frame(self.pagrindinis)
-        #self.name = Label(pagrindinis, text="\u2660 get.ACE() \u2660", width=15, font=("Bahnschrift", 20))
-        #self.name.pack(side=TOP)
+        self.zaidimas()
         self.frame.pack()
 
     def kortos(self):
@@ -78,10 +77,32 @@ class Start:
         else:
             self.korta = int(korta[0:2])
             return self.korta
-        
-    teisingi_spejimai = 0
-    kortu_kalade = kortos()
-    korta = traukimas(kortu_kalade)
+
+    def zaidimas(self):
+        while True:
+            kortu_kalade = self.kortos()
+            teisingi_spejimai = 0
+            self.korta = self.traukimas(kortu_kalade)
+            self.taskai = self.aukstesniu_vertes(self.korta)
+            if not kortu_kalade:
+                ats = Label(self.pagrindinis, text= "congrats, you did pretty well!")
+                ats.pack(side=BOTTOM)
+                break
+            sekanti_korta = self.traukimas(kortu_kalade)
+            sekanti_taskai = self.aukstesniu_vertes(sekanti_korta)
+            jusu_korta = Label(self.pagrindinis, text = self.korta)
+            jusu_korta.pack(side=TOP)
+            spejimas1 = Button(self.pagrindinis, text= "Higher")
+            spejimas2 = Button(self.pagrindinis, text= "Same")
+            spejimas3 = Button(self.pagrindinis, text= "Lower")
+            spejimas1.pack(side=RIGHT)
+            spejimas2.pack(side=BOTTOM)
+            spejimas3.pack(side=LEFT)
+            #if self.taskai < sekanti_taskai and spejimas3 is pressed:
+                #print("Correct!")
+                #teisingi_spejimai += 1
+                #korta = sekanti_korta
+                #continue
         
 
 class Rules:
