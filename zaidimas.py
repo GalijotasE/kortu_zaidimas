@@ -47,9 +47,19 @@ class Start:
     def __init__(self, pagrindinis):
         self.pagrindinis = pagrindinis
         self.frame = tk.Frame(self.pagrindinis)
-        self.zaidimas()
+        ipadding = {'ipadx': 10, 'ipady': 10}
+        ivesti = Label(self.pagrindinis, text='Please Choose If A Card Is Lower, Same Or Higher',font=("Bahnschrift", 13))
+        card = Label(self.pagrindinis, text= "korta bus cia", font=("Bahnschrift", 13))
+        spejimas1 = Button(self.pagrindinis, text= "Lower",font=("Bahnschrift", 13))
+        spejimas2 = Button(self.pagrindinis, text= "Same",font=("Bahnschrift", 13))
+        spejimas3 = Button(self.pagrindinis, text= "Higher",font=("Bahnschrift", 13))
+        ivesti.pack(**ipadding, fill=tk.X)
+        card.pack(**ipadding, fill=tk.X)
+        spejimas1.pack(**ipadding, expand=True, fill=tk.BOTH, side=tk.LEFT)
+        spejimas2.pack(**ipadding, expand=True, fill=tk.BOTH, side=tk.LEFT)
+        spejimas3.pack(**ipadding, expand=True, fill=tk.BOTH, side=tk.LEFT)
         self.frame.pack()
-
+    
     def kortos(self):
         self.kortos_values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
         self.kortos_zenklai = ['♠', '♦', '♥', '♣']
@@ -92,13 +102,7 @@ class Start:
             sekanti_taskai = self.aukstesniu_vertes(sekanti_korta)
             jusu_korta = Label(self.pagrindinis, text = self.korta)
             jusu_korta.pack(side=TOP)
-            spejimas1 = Button(self.pagrindinis, text= "Higher")
-            spejimas2 = Button(self.pagrindinis, text= "Same")
-            spejimas3 = Button(self.pagrindinis, text= "Lower")
-            spejimas1.pack(side=RIGHT)
-            spejimas2.pack(side=BOTTOM)
-            spejimas3.pack(side=LEFT)
-            #if self.taskai < sekanti_taskai and spejimas3 is pressed:
+            #if self.taskai < sekanti_taskai and spejimas3 *mygtuko paspaudimas*:
                 #print("Correct!")
                 #teisingi_spejimai += 1
                 #korta = sekanti_korta
@@ -112,11 +116,11 @@ class Rules:
         self.name = Label(pagrindinis, text="\u2660 get.ACE() \u2660", width=15, font=("Bahnschrift", 20))
         self.meniu_extra = Label(pagrindinis, text="Rules of the game:",font=("Bahnschrift", 14))
         self.meniu_extra1 = Label(pagrindinis, text="As soon as you start the game",font=("Bahnschrift", 11))
-        self.meniu_extra2 = Label(pagrindinis, text="you will be given a choice",font=("Bahnschrift", 11))
-        self.meniu_extra3 = Label(pagrindinis, text="to pick a random number.",font=("Bahnschrift", 11))
-        self.meniu_extra4 = Label(pagrindinis, text="All of these numbers contain a random card.",font=("Bahnschrift", 11))
-        self.meniu_extra5 = Label(pagrindinis, text="Your objective - To randomly select a card",font=("Bahnschrift", 11))
-        self.meniu_extra6 = Label(pagrindinis, text="that is higher than your AI opponent's",font=("Bahnschrift", 11))
+        self.meniu_extra2 = Label(pagrindinis, text="you will be given a choice - to pick",font=("Bahnschrift", 11))
+        self.meniu_extra3 = Label(pagrindinis, text="if a card is lower, same or higher. ",font=("Bahnschrift", 11))
+        self.meniu_extra4 = Label(pagrindinis, text="Your objective - To make a correct choice.",font=("Bahnschrift", 11))
+        self.meniu_extra5 = Label(pagrindinis, text="Every correct answer will give you +1 point",font=("Bahnschrift", 11))
+        self.meniu_extra6 = Label(pagrindinis, text="and incorrect will instantly restart the game.",font=("Bahnschrift", 11))
         self.meniu_extra7 = Label(pagrindinis, text="BEST OF LUCK!",font=("Bahnschrift", 11))
         self.quitButton = tk.Button(self.frame, text = 'Exit to menu', command = self.close_windows, width=30, font=("Bahnschrift", 13))
         self.name.pack(side=TOP)
@@ -139,7 +143,7 @@ def pagrindinis_langas():
     langas = tk.Tk()
     app = Menu(langas)
     langas.geometry("500x300")
-    langas.title("get.ACE() - card game v1.2")
+    langas.title("get.ACE() - card game v1.3")
     langas.mainloop()
 
 if __name__ == '__main__':
