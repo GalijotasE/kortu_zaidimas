@@ -25,3 +25,5 @@ Added "kortos()" function and assigned card values, signs, deck to it's variable
 Added "traukimas()" function, which shuffles and takes out a card.
 Added "aukstesniu_vertes()" function, which defines values of higher cards.
 
+V1.4
+Added
